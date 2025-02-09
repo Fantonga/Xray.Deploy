@@ -1,0 +1,16 @@
+[Unit]
+Description=The Xray Proxy Serve
+After=network-online.target
+
+[Service]
+User=root
+ExecStart=/usr/local/xray/xray run -c /etc/xray/config.json
+ExecStop=/bin/kill -s QUIT $MAINPID
+Restart=always
+RestartSec=15s
+
+LimitNOFILE=1048576
+LimitNPROC=512000
+
+[Install]
+WantedBy=multi-user.target
