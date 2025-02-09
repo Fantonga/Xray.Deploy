@@ -43,3 +43,39 @@ touch /var/log/btmp
 chmod 600 /var/log/btmp
 
 这样系统才能继续记录失败的登录尝试。
+
+在 CentOS 中，你可以使用以下几种命令来删除日志文件：
+
+### 1. 使用 rm 命令
+rm 命令用于删除文件或目录。要删除单个日志文件，可以使用以下命令：
+rm /path/to/logfile.log
+
+如果要删除目录下的所有日志文件，可以使用通配符 `*`：
+rm /path/to/logs/*.log
+
+### 2. 使用 find 命令
+find 命令可以用于查找并删除符合条件的文件。例如，删除 /var/log 目录下所有扩展名为 .log 的文件：
+find /var/log -name "*.log" -type f -delete
+
+### 3. 使用 truncate 命令
+如果你只想清空日志文件内容而不删除文件本身，可以使用 truncate 命令：
+truncate -s 0 /path/to/logfile.log
+
+### 4. 使用 logrotate
+logrotate 是一个日志管理工具，可以自动轮换、压缩和删除日志文件。你可以配置 /etc/logrotate.conf 或 /etc/logrotate.d/ 目录下的配置文件来管理日志文件。
+
+例如，配置 logrotate 每天轮换日志并保留最近 7 天的日志：
+/path/to/logfile.log {
+    daily
+    rotate 7
+    compress
+    missingok
+    notifempty
+}
+
+### 注意事项
+- 删除日志文件前，确保不再需要这些日志。
+- 删除系统日志文件时需谨慎，以免影响系统正常运行。
+- 建议备份重要日志文件后再删除。
+
+通过这些命令，你可以有效管理 CentOS 系统中的日志文件。
