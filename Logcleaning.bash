@@ -49,7 +49,6 @@ chmod 600 /var/log/btmp
 ### 1. 使用 rm 命令
 rm 命令用于删除文件或目录。要删除单个日志文件，可以使用以下命令：
 bash
-
 rm /path/to/logfile.log
 
 如果要删除目录下的所有日志文件，可以使用通配符 `*`：
