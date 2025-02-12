@@ -1,7 +1,7 @@
 {
   "inbounds": [
     {
-      "listen": "160.250.127.2",
+      "listen": "192.168.**.**",
       "port": 5000,
       "protocol": "socks",
       "settings": {
@@ -20,7 +20,7 @@
   "outbounds": [
     {
       "protocol": "freedom",
-      "sendThrough": "160.250.127.2",
+      "sendThrough": "192.168.**.**",
       "tag": "out_5000"
     }
   ],
