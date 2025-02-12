@@ -34,3 +34,57 @@
     ]
   }
 }
+
+{
+  // 入站规则配置（接收外部请求）
+  "inbounds": [
+    {
+      // 监听地址（根据匿名化规则，实际IP应为192.168.XX.XX）
+      "listen": "192.168.XX.XX",
+      // 监听端口（SOCKS代理服务端口）
+      "port": 5000,
+      // 使用SOCKS5协议
+      "protocol": "socks",
+      "settings": {
+        // 启用密码验证
+        "auth": "password",
+        // 开启UDP转发支持
+        "udp": true,
+        // 用户凭证列表（已匿名化，实际部署请修改）
+        "accounts": [
+          {
+            "user": "CO9mYLGw",  // 用户名（示例值）
+            "pass": "EaBvkIKo"   // 密码（示例值）
+          }
+        ]
+      },
+      // 规则标签（用于路由匹配）
+      "tag": "socks_5000"
+    }
+  ],
+
+  // 出站规则配置（处理对外请求）
+  "outbounds": [
+    {
+      // 使用自由协议（直连模式）
+      "protocol": "freedom",
+      // 指定出口网络接口（根据匿名化规则，实际IP应为192.168.XX.XX）
+      "sendThrough": "192.168.XX.XX",
+      // 出站规则标签
+      "tag": "out_5000"
+    }
+  ],
+
+  // 路由规则配置
+  "routing": {
+    "rules": [
+      {
+        "type": "field",  // 基础路由规则
+        // 匹配入站标签（这里关联5000端口的SOCKS入站）
+        "inboundTag": ["socks_5000"],
+        // 指定对应的出站规则
+        "outboundTag": "out_5000"
+      }
+    ]
+  }
+}
