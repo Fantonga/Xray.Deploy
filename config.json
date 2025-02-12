@@ -1,0 +1,36 @@
+{
+  "inbounds": [
+    {
+      "listen": "160.250.127.2",
+      "port": 5000,
+      "protocol": "socks",
+      "settings": {
+        "auth": "password",
+        "udp": true,
+        "accounts": [
+          {
+            "user": "CO9mYLGw",
+            "pass": "EaBvkIKo"
+          }
+        ]
+      },
+      "tag": "socks_5000"
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "sendThrough": "160.250.127.2",
+      "tag": "out_5000"
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "inboundTag": ["socks_5000"],
+        "outboundTag": "out_5000"
+      }
+    ]
+  }
+}
