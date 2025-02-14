@@ -142,24 +142,3 @@ git commit -m "Initial firewall rules"
 git commit -am "Updated firewall rules for new services"
 
 优点
- • 可跟踪历史版本
- • 适用于多人协作
-
-缺点
- • 需要 git 服务器管理
- • 适合代码化运维
-
-总结
-
-方法 适用场景 优点 缺点
-.sh 脚本 个人管理，手动执行 简单易用，易修改 需要手动执行
-iptables-save iptables 规则存储 直接恢复，系统启动自动加载 不易手动编辑
-firewalld 配置文件 firewalld 规则存储 自动管理，无需手动执行 仅适用于 firewalld
-Ansible/Puppet 多服务器自动化管理 可批量部署，易回滚 需要额外学习
-Git 团队协作，历史变更记录 可追踪和回滚 需要 Git 服务器
-
-如果是个人服务器，建议使用 .sh 脚本 或 iptables-save；
-如果是生产环境，建议用 firewalld 配置文件 或 Ansible；
-如果是团队协作，可以结合 Git 做版本管理。
-
-你具体打算怎么管理防火墙规则？
